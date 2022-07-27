@@ -1,4 +1,4 @@
-package ar.com.ecommencer.entity;
+package ar.com.ecommencer.sva.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,11 +15,11 @@ import javax.persistence.*;
 @Table(name = "producto")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long idProducto;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "producto_id")
+    private Long productoId;
 
-    @Column(name = "nombre",columnDefinition = "VARCHAR(50)")
+    @Column(name = "nombre",columnDefinition = "VARCHAR(255)")
     private String nombre;
 
     @Column(name = "descripcion",columnDefinition = "VARCHAR(255)")
@@ -29,6 +29,6 @@ public class Producto {
     private Integer stock;
 
     @Column(name = "precio",columnDefinition = "DOUBLE")
-    private Double precion;
+    private Double precio;
 
 }
