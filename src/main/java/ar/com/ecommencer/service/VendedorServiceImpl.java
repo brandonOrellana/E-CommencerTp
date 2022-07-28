@@ -4,6 +4,8 @@ import ar.com.ecommencer.sva.models.entities.Vendedor;
 import ar.com.ecommencer.sva.models.repositories.VendedorRepository;
 import org.aspectj.weaver.VersionedDataInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +26,10 @@ public class VendedorServiceImpl implements VendedorService{
     public List<Vendedor> obtenerVendedores() {
         return vendedorRepository.findAll();
     }
-
+    @Override
+    public Page<Vendedor> obtenerVendedores(Pageable pageable) {
+        return vendedorRepository.findAll(pageable);
+    }
     @Override
     public Vendedor obtenerVendedorPorId(Long vendedorId) {
         Optional<Vendedor> vendedor = vendedorRepository.findById(vendedorId);

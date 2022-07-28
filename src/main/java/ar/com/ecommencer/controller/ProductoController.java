@@ -4,6 +4,8 @@ package ar.com.ecommencer.controller;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import ar.com.ecommencer.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +24,11 @@ public class ProductoController {
     @GetMapping("/productos")
     public List<Producto> obtenerProductos(){
         return productoService.obtenerProductos();
+    }
+
+    @GetMapping("/productos/page")
+    public Page<Producto> obtenerProductos(Pageable pageable){
+        return productoService.obtenerProductos(pageable);
     }
 
     @GetMapping("/productos/{id}")

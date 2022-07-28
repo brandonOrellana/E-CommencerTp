@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.PersistentObjectException;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
@@ -16,11 +17,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Table(name = "vendedor")
-public class Vendedor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vendedor_id")
-    private Long vendedorId;
+public class Vendedor extends Persistente {
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(255)")
     private String nombre;

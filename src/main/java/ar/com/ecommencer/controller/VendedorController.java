@@ -3,6 +3,8 @@ package ar.com.ecommencer.controller;
 import ar.com.ecommencer.service.VendedorService;
 import ar.com.ecommencer.sva.models.entities.Vendedor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,11 @@ public class VendedorController {
     @GetMapping("/vendedores")
     public List<Vendedor> obtenerVendedores(){
         return vendedorService.obtenerVendedores();
+    }
+
+    @GetMapping("/vendedores/page")
+    public Page<Vendedor> obtenerVendedores(Pageable pageable){
+        return vendedorService.obtenerVendedores(pageable);
     }
 
     @GetMapping("/vendedores/{id}")

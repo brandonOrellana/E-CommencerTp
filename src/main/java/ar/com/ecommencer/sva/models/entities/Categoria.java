@@ -13,11 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Categoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "categoria_id")
-    private Long categoriaId;
+public class Categoria extends Persistente{
+
     @Column(name = "nombre", columnDefinition = "VARCHAR(255)")
     private String nombre;
 }

@@ -13,11 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Table(name = "producto")
-public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "producto_id")
-    private Long productoId;
+public class Producto extends Persistente{
 
     @Column(name = "nombre",columnDefinition = "VARCHAR(255)")
     private String nombre;

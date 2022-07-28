@@ -3,6 +3,8 @@ package ar.com.ecommencer.service;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import ar.com.ecommencer.sva.models.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,10 @@ public class ProductoServiceImpl implements ProductoService{
         return productoRepository.findAll();
     }
 
+    @Override
+    public Page<Producto> obtenerProductos(Pageable pageable) {
+        return productoRepository.findAll(pageable);
+    }
     @Override
     public Producto obtenerProductoPorId(Long productoId) {
         Optional<Producto> producto = productoRepository.findById(productoId);
