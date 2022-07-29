@@ -1,6 +1,7 @@
 package ar.com.ecommencer.controller;
 
 
+import ar.com.ecommencer.errors.ProductoNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import ar.com.ecommencer.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class ProductoController {
     }
 
     @GetMapping("/productos/{id}")
-    public Producto obtenerProductoPorId(@PathVariable("id") Long productoId){
+    public Producto obtenerProductoPorId(@PathVariable("id") Long productoId) throws ProductoNotFoundException {
         return productoService.obtenerProductoPorId(productoId);
     }
 

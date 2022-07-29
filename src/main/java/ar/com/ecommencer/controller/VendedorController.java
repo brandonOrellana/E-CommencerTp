@@ -1,5 +1,6 @@
 package ar.com.ecommencer.controller;
 
+import ar.com.ecommencer.errors.VendedorNotFoundException;
 import ar.com.ecommencer.service.VendedorService;
 import ar.com.ecommencer.sva.models.entities.Vendedor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class VendedorController {
     }
 
     @GetMapping("/vendedores/{id}")
-    public Vendedor obtenerVendedorPorId(@PathVariable("id") Long vendedorId){
+    public Vendedor obtenerVendedorPorId(@PathVariable("id") Long vendedorId) throws VendedorNotFoundException {
         return vendedorService.obtenerVendedorPorId(vendedorId);
     }
 

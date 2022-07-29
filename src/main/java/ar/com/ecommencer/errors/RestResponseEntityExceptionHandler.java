@@ -14,11 +14,30 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(CategoriaNotFoundException.class)
-    public ResponseEntity<ErrorMensage> departmentNotFoundException(CategoriaNotFoundException exception,
+    public ResponseEntity<ErrorMensage> categoriaNotFoundException(CategoriaNotFoundException exception,
                                                                     WebRequest request){
-        ErrorMensage message = new ErrorMensage(HttpStatus.NOT_FOUND,
-                exception.getMessage());
+        ErrorMensage message = new ErrorMensage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
 
+    @ExceptionHandler(VendedorNotFoundException.class)
+    public ResponseEntity<ErrorMensage> vendedorNotFoundException(VendedorNotFoundException exception,
+                                                                    WebRequest request){
+        ErrorMensage message = new ErrorMensage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+
+    @ExceptionHandler(UsuarioNotFoundException.class)
+    public ResponseEntity<ErrorMensage> usuarioNotFoundException(UsuarioNotFoundException exception,
+                                                                  WebRequest request){
+        ErrorMensage message = new ErrorMensage(HttpStatus.NOT_FOUND, exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
+
+    @ExceptionHandler(ProductoNotFoundException.class)
+    public ResponseEntity<ErrorMensage> productoNotFoundException(ProductoNotFoundException exception,
+                                                                 WebRequest request){
+        ErrorMensage message = new ErrorMensage(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
     }
 }

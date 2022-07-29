@@ -1,5 +1,6 @@
 package ar.com.ecommencer.service;
 
+import ar.com.ecommencer.errors.VendedorNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Vendedor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ public interface VendedorService {
 
     List<Vendedor> obtenerVendedores();
 
-    Vendedor obtenerVendedorPorId(Long vendedorId);
+    Vendedor obtenerVendedorPorId(Long vendedorId) throws VendedorNotFoundException;
 
     void borrarVendedor(Long vendedorId);
 

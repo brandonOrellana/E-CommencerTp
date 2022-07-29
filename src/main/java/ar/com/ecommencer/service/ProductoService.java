@@ -1,5 +1,6 @@
 package ar.com.ecommencer.service;
 
+import ar.com.ecommencer.errors.ProductoNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ public interface ProductoService {
 
     public List<Producto> obtenerProductos();
 
-    public Producto obtenerProductoPorId(Long productoId);
+    public Producto obtenerProductoPorId(Long productoId) throws ProductoNotFoundException;
 
     public void borrarProductoPorId(Long productoId);
 
