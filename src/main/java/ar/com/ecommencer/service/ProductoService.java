@@ -19,4 +19,6 @@ public interface ProductoService {
     public Producto modificarProducto(Long productoId, Producto producto);
 
     Page<Producto> obtenerProductos(Pageable pageable);
+
+    Producto guardarProductoDemo();
 }

@@ -22,11 +22,20 @@ public class ProductoController {
         return productoService.guardarProducto(producto);
     }
 
+    /*******************************************/
+    @PostMapping("/productos/demo")
+    public Producto guardarProductoDemo(){
+        return productoService.guardarProductoDemo();
+    }
+    /*******************************************/
+
+    @CrossOrigin
     @GetMapping("/productos")
     public List<Producto> obtenerProductos(){
         return productoService.obtenerProductos();
     }
 
+    @CrossOrigin
     @GetMapping("/productos/page")
     public Page<Producto> obtenerProductos(Pageable pageable){
         return productoService.obtenerProductos(pageable);

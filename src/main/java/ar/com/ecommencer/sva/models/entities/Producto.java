@@ -15,6 +15,14 @@ import javax.persistence.*;
 @Table(name = "producto")
 public class Producto extends Persistente{
 
+    /*@ManyToOne
+    @JoinColumn(name = "id_vendedor", referencedColumnName = "id")
+    private Vendedor vendedor;*/
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id")
+    private Categoria categoria;
+
     @Column(name = "nombre",columnDefinition = "VARCHAR(255)")
     private String nombre;
 

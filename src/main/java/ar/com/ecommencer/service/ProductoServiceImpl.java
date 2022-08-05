@@ -2,6 +2,7 @@ package ar.com.ecommencer.service;
 
 import ar.com.ecommencer.errors.CategoriaNotFoundException;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
+import ar.com.ecommencer.sva.models.entities.Categoria;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import ar.com.ecommencer.sva.models.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductoServiceImpl implements ProductoService{
@@ -32,6 +31,19 @@ public class ProductoServiceImpl implements ProductoService{
     public Page<Producto> obtenerProductos(Pageable pageable) {
         return productoRepository.findAll(pageable);
     }
+
+    @Override
+    public Producto guardarProductoDemo() {
+        Collection<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(new Categoria("Ropa"),"Remera","descripcion",4,450.2));
+        productos.add(new Producto(new Categoria("Inmuebles"),"Sofa","descripcion",5,477.2));
+        productos.add(new Producto(new Categoria("Herramienta"),"Martillo","descripcion",7,11.2));
+        productos.add(new Producto(new Categoria("Moda"),"Cartera","descripcion",2,10.2));
+        productoRepository.saveAll(productos);
+        Producto demo = new Producto(new Categoria("Oficina"),"Impresora","descripcion",3,48.2);
+        return productoRepository.save(demo);
+    }
+
     @Override
     public Producto obtenerProductoPorId(Long productoId) throws ProductoNotFoundException {
         Optional<Producto> producto = productoRepository.findById(productoId);

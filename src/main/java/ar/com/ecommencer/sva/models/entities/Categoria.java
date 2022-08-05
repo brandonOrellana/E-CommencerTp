@@ -13,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "categoria")
 public class Categoria extends Persistente{
 
     @Column(name = "nombre", columnDefinition = "VARCHAR(255)")
