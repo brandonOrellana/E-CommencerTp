@@ -1,5 +1,6 @@
 package ar.com.ecommencer.service;
 
+import ar.com.ecommencer.dtos.ProductoDTO;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import org.springframework.data.domain.Page;
@@ -8,17 +9,19 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ProductoService {
-    public Producto guardarProducto(Producto producto);
+    public ProductoDTO guardarProducto(Producto producto);
 
-    public List<Producto> obtenerProductos();
+    public List<ProductoDTO> obtenerProductos();
 
     public Producto obtenerProductoPorId(Long productoId) throws ProductoNotFoundException;
+
+    public ProductoDTO obtenerProductoDTOPorId(Long productoId) throws ProductoNotFoundException;
 
     public void borrarProductoPorId(Long productoId);
 
     public Producto modificarProducto(Long productoId, Producto producto);
 
-    Page<Producto> obtenerProductos(Pageable pageable);
+    Page<ProductoDTO> obtenerProductos(Pageable pageable);
 
-    Producto guardarProductoDemo();
+    ProductoDTO modificarProductoDTO(Long productoId, Producto producto);
 }

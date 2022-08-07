@@ -1,6 +1,7 @@
 package ar.com.ecommencer.controller;
 
 
+import ar.com.ecommencer.dtos.ProductoDTO;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Producto;
 import ar.com.ecommencer.service.ProductoService;
@@ -18,32 +19,25 @@ public class ProductoController {
     private ProductoService productoService;
 
     @PostMapping("/productos")
-    public Producto guardarProducto(@RequestBody Producto producto){
+    public ProductoDTO guardarProducto(@RequestBody Producto producto){
         return productoService.guardarProducto(producto);
     }
 
-    /*******************************************/
-    @PostMapping("/productos/demo")
-    public Producto guardarProductoDemo(){
-        return productoService.guardarProductoDemo();
-    }
-    /*******************************************/
-
     @CrossOrigin
     @GetMapping("/productos")
-    public List<Producto> obtenerProductos(){
+    public List<ProductoDTO> obtenerProductos(){
         return productoService.obtenerProductos();
     }
 
     @CrossOrigin
     @GetMapping("/productos/page")
-    public Page<Producto> obtenerProductos(Pageable pageable){
+    public Page<ProductoDTO> obtenerProductos(Pageable pageable){
         return productoService.obtenerProductos(pageable);
     }
 
     @GetMapping("/productos/{id}")
-    public Producto obtenerProductoPorId(@PathVariable("id") Long productoId) throws ProductoNotFoundException {
-        return productoService.obtenerProductoPorId(productoId);
+    public ProductoDTO obtenerProductoPorId(@PathVariable("id") Long productoId) throws ProductoNotFoundException {
+        return productoService.obtenerProductoDTOPorId(productoId);
     }
 
     @DeleteMapping("/productos/{id}")
@@ -53,9 +47,9 @@ public class ProductoController {
     }
 
     @PutMapping("/productos/{id}")
-    public Producto modificarProducto(@PathVariable("id") Long productoId,
+    public ProductoDTO modificarProductoDTO(@PathVariable("id") Long productoId,
                                       @RequestBody Producto producto){
-        return productoService.modificarProducto(productoId,producto);
+        return productoService.modificarProductoDTO(productoId,producto);
     }
 
 }

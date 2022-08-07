@@ -36,7 +36,7 @@ public class VendedorServiceImpl implements VendedorService{
         Optional<Vendedor> vendedor = vendedorRepository.findById(vendedorId);
 
         if(!vendedor.isPresent()){
-            throw new VendedorNotFoundException("Vendedor no encontrada");
+            throw new VendedorNotFoundException("Vendedor no encontrado");
         }
 
         return vendedor.get();

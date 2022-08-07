@@ -10,24 +10,11 @@ import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Table(name = "vendedor")
-public class Vendedor extends Persistente {
+public class Vendedor extends Persona {
 
-    @Column(name = "nombre", columnDefinition = "VARCHAR(255)")
-    private String nombre;
-
-    @Column(name = "apellido", columnDefinition = "VARCHAR(255)")
-    private String apellido;
-
-    @Column(name = "telefono", columnDefinition = "VARCHAR(255)")
-    private String telefono;
-
-    @Column(name = "fecha_nacimiento", columnDefinition = "DATE")
-    private LocalDate fechaNacimiento;
 }
