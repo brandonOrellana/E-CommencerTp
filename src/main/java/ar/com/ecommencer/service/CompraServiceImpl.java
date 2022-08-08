@@ -3,6 +3,7 @@ package ar.com.ecommencer.service;
 import ar.com.ecommencer.dtos.CompraDTO;
 import ar.com.ecommencer.dtos.DolarDTP;
 import ar.com.ecommencer.dtos.ItemCompraDTO;
+import ar.com.ecommencer.dtos.ProductoDTO;
 import ar.com.ecommencer.errors.ClienteNotFoundException;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
 import ar.com.ecommencer.sva.models.entities.Categoria;
@@ -12,6 +13,8 @@ import ar.com.ecommencer.sva.models.entities.ItemCompra;
 import ar.com.ecommencer.sva.models.repositories.ClienteRepository;
 import ar.com.ecommencer.sva.models.repositories.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -56,6 +59,17 @@ public class CompraServiceImpl implements CompraService{
 
     }
 
+    @Override
+    public Page<CompraDTO> obtenerComprasCliente(Long idCliente, Pageable pageable) {
+        Cliente cliente;
+        try {
+            cliente = clienteService.obtenerClientesPorId(idCliente);
+        } catch (ClienteNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return compraRepository.findAllByCliente(cliente, pageable).map(m->this.compraDTO(m));
+    }
+
 
     public Compra toCompra(CompraDTO compraDTO){
         Cliente clienteDB = null;
@@ -65,7 +79,6 @@ public class CompraServiceImpl implements CompraService{
             throw new RuntimeException(e);
         }
         List<ItemCompra> items = compraDTO.getItemsDTO().stream().map(m -> this.toItemCompra(m)).collect(Collectors.toList());
-
 
 
         Double total = items.stream().mapToDouble(ItemCompra::getPrecio).sum();
@@ -80,7 +93,18 @@ public class CompraServiceImpl implements CompraService{
         return compra1;
     }
 
-
+    public CompraDTO compraDTO(Compra compra){
+        Double totalDolares = this.convertirADolar(compra.getTotalAPagar());
+        CompraDTO nuevaDTO = CompraDTO.builder()
+                .idCliente(compra.getCliente().getId())
+                .medioDePago(compra.getMedioDePago())
+                .itemsDTO(compra.getProductos().stream().map(m->this.toItemCompraDTO(m)).collect(Collectors.toList()))
+                .moneda(compra.getMedioDePago())
+                .totalAPagar(compra.getTotalAPagar())
+                .precioEnDolares(totalDolares)
+                .build();
+        return  nuevaDTO;
+    }
     public ItemCompra toItemCompra(ItemCompraDTO itemCompraDTO){
         ItemCompra itemCompra = new ItemCompra();
         try {
@@ -93,6 +117,14 @@ public class CompraServiceImpl implements CompraService{
         itemCompra.setPrecio(precio*itemCompraDTO.getCantidad());
 
         return itemCompra;
+    }
+
+    public ItemCompraDTO toItemCompraDTO(ItemCompra itemCompra){
+        ItemCompraDTO itemCompraDTO1 = ItemCompraDTO.builder()
+                .idProducto(itemCompra.getId())
+                .cantidad(itemCompra.getCantidad())
+                .build();
+        return itemCompraDTO1;
     }
 
     public Double convertirADolar(Double pesos){

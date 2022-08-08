@@ -147,6 +147,11 @@ public class ProductoServiceImpl implements ProductoService{
         return this.toProductoDTO(productoGuardado);
     }
 
+    @Override
+    public Page<ProductoDTO> obtenerProductosFiltro(String nombre,Pageable pageable) {
+        return productoRepository.findProductoByNombreContainsIgnoreCase(nombre,pageable).map(m->this.toProductoDTO(m));
+    }
+
     public ProductoDTO toProductoDTO(Producto producto){
         ProductoDTO productoDTO = ProductoDTO.builder()
                 .id(producto.getId())

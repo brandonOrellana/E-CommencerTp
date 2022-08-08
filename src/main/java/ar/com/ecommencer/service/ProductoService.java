@@ -24,4 +24,6 @@ public interface ProductoService {
     Page<ProductoDTO> obtenerProductos(Pageable pageable);
 
     ProductoDTO modificarProductoDTO(Long productoId, Producto producto);
+
+    Page<ProductoDTO> obtenerProductosFiltro(String nombre,Pageable pageable);
 }

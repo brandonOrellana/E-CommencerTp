@@ -35,6 +35,12 @@ public class ProductoController {
         return productoService.obtenerProductos(pageable);
     }
 
+    @CrossOrigin
+    @GetMapping("/productos/search/page")///productos/search/page?nombre={variable a filtrar}
+    public Page<ProductoDTO> obtenerProductosFiltro(@RequestParam String nombre,Pageable pageable){
+        return productoService.obtenerProductosFiltro(nombre,pageable);
+    }
+
     @GetMapping("/productos/{id}")
     public ProductoDTO obtenerProductoPorId(@PathVariable("id") Long productoId) throws ProductoNotFoundException {
         return productoService.obtenerProductoDTOPorId(productoId);
