@@ -19,7 +19,7 @@ public class CompraController {
     public Compra guardarCompra(@RequestBody CompraDTO compra){
         return compraService.guardarCompra(compra);
     }*/
-
+    @CrossOrigin
     @PostMapping("/compra")
     public CompraDTO guardarCompra(@RequestBody CompraDTO compra){
         return compraService.guardarCompra(compra);
