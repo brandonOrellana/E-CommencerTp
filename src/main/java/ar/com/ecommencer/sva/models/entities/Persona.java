@@ -20,6 +20,7 @@ public class Persona{
     private String apellido;
     @Column(name = "fecha_nacimiento", columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
+    private String gmail;
     private String telefono;
 
     @Embedded
