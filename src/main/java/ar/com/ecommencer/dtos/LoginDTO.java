@@ -18,5 +18,6 @@ public class LoginDTO {
     private String contrasenia;
     private Boolean estado;
     private String mensage;
+    private String nombre;
     private Long id;
 }

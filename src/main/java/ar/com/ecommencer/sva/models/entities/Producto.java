@@ -35,4 +35,6 @@ public class Producto extends Persistente{
     @Column(name = "precio",columnDefinition = "DOUBLE")
     private Double precio;
 
+    @Column(name = "imagen",columnDefinition = "VARCHAR(255)")
+    private String imagen;
 }

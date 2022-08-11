@@ -22,6 +22,7 @@ public class LoginService {
                     .email(login.getEmail())
                     .contrasenia(login.getContrasenia())
                     .estado(false)
+                    .nombre("")
                     .mensage("usuario no econtrado")
                     .build();
         }
@@ -32,6 +33,7 @@ public class LoginService {
                     .email(login.getEmail())
                     .contrasenia(login.getContrasenia())
                     .estado(true)
+                    .nombre(cliente.getNombre())
                     .mensage("perfecto")
                     .id(cliente.getId())
                     .build();
@@ -40,6 +42,7 @@ public class LoginService {
                 .email(login.getEmail())
                 .contrasenia(login.getContrasenia())
                 .estado(false)
+                .nombre("")
                 .mensage("error contrasenia")
                 .build();
     }

@@ -161,6 +161,7 @@ public class ProductoServiceImpl implements ProductoService{
                 .descripcion(producto.getDescripcion())
                 .stock(producto.getStock())
                 .precio(producto.getPrecio())
+                .imagen(producto.getImagen())
                 .build();
         return productoDTO;
     }
