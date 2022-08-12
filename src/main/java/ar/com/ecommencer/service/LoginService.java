@@ -23,7 +23,7 @@ public class LoginService {
                     .contrasenia(login.getContrasenia())
                     .estado(false)
                     .nombre("")
-                    .mensage("usuario no econtrado")
+                    .mensage("cliente no econtrado")
                     .build();
         }
 

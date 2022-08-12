@@ -52,7 +52,7 @@ public class CompraServiceImpl implements CompraService{
                 .itemsDTO(compraDTO.getItemsDTO())
                 .moneda(compraDTO.getMoneda())
                 .totalAPagar(compra.getTotalAPagar())
-                .precioEnDolares(totalDolares)
+                .precioEnDolares(redondearDecimales(totalDolares))
                 .build();
 
         return nuevaDTO;
@@ -130,6 +130,10 @@ public class CompraServiceImpl implements CompraService{
     public Double convertirADolar(Double pesos){
         //dolarService.init();
         return pesos/dolarService.getVenta();
+    }
+
+    public Double redondearDecimales(Double numero){
+        return Math.round(numero * 100) / 100d;
     }
 
 }
