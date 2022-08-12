@@ -19,4 +19,5 @@ public class ProductoDTO {
     private Integer stock;
     private Double precio;
     private String imagen;
+    private Double precioDolar;
 }

@@ -27,6 +27,9 @@ public class ProductoServiceImpl implements ProductoService{
     @Autowired
     private VendedorService vendedorService;
 
+    @Autowired
+    private DolarService dolarService;
+
     @Override
     public ProductoDTO guardarProducto(Producto producto) {
         Categoria categoriaDB;
@@ -161,8 +164,13 @@ public class ProductoServiceImpl implements ProductoService{
                 .descripcion(producto.getDescripcion())
                 .stock(producto.getStock())
                 .precio(producto.getPrecio())
+                .precioDolar(this.redondearDecimales(producto.getPrecio()/ dolarService.getVenta()))
                 .imagen(producto.getImagen())
                 .build();
         return productoDTO;
+    }
+
+    public Double redondearDecimales(Double numero){
+        return Math.round(numero * 100) / 100d;
     }
 }
