@@ -1,6 +1,5 @@
 package ar.com.ecommencer.service;
 
-import ar.com.ecommencer.dtos.CompraDTO;
 import ar.com.ecommencer.dtos.ProductoDTO;
 import ar.com.ecommencer.errors.CategoriaNotFoundException;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,7 +26,7 @@ public class ProductoServiceImpl implements ProductoService{
     private VendedorService vendedorService;
 
     @Autowired
-    private DolarService dolarService;
+    private DolarServiceImpl dolarServiceImpl;
 
     @Override
     public ProductoDTO guardarProducto(Producto producto) {
@@ -164,7 +162,7 @@ public class ProductoServiceImpl implements ProductoService{
                 .descripcion(producto.getDescripcion())
                 .stock(producto.getStock())
                 .precio(producto.getPrecio())
-                .precioDolar(this.redondearDecimales(producto.getPrecio()/ dolarService.getVenta()))
+                .precioDolar(this.redondearDecimales(producto.getPrecio()/ dolarServiceImpl.getVenta()))
                 .imagen(producto.getImagen())
                 .build();
         return productoDTO;

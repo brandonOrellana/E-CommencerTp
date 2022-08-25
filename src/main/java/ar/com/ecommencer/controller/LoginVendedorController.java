@@ -1,7 +1,7 @@
 package ar.com.ecommencer.controller;
 
 import ar.com.ecommencer.dtos.LoginDTO;
-import ar.com.ecommencer.service.LoginServiceImpl;
+import ar.com.ecommencer.service.LoginVendedorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LoginController {
+public class LoginVendedorController {
 
     @Autowired
-    private LoginServiceImpl loginServiceImpl;
+    private LoginVendedorServiceImpl loginVendedorService;
 
     @CrossOrigin
-    @PostMapping("/login")
+    @PostMapping("/loginVendedor")
     public LoginDTO validarLogin(@RequestBody LoginDTO login){
-        return loginServiceImpl.validarLogin(login);
+        return loginVendedorService.validarLogin(login);
     }
 }

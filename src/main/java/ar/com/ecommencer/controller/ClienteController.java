@@ -18,6 +18,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @CrossOrigin
     @PostMapping("/clientes")
     public Cliente guardarClientes(@RequestBody Cliente cliente){
         return clienteService.guardarCliente(cliente);

@@ -1,16 +1,12 @@
 package ar.com.ecommencer.service;
 
 import ar.com.ecommencer.dtos.CompraDTO;
-import ar.com.ecommencer.dtos.DolarDTP;
 import ar.com.ecommencer.dtos.ItemCompraDTO;
-import ar.com.ecommencer.dtos.ProductoDTO;
 import ar.com.ecommencer.errors.ClienteNotFoundException;
 import ar.com.ecommencer.errors.ProductoNotFoundException;
-import ar.com.ecommencer.sva.models.entities.Categoria;
 import ar.com.ecommencer.sva.models.entities.Cliente;
 import ar.com.ecommencer.sva.models.entities.Compra;
 import ar.com.ecommencer.sva.models.entities.ItemCompra;
-import ar.com.ecommencer.sva.models.repositories.ClienteRepository;
 import ar.com.ecommencer.sva.models.repositories.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +30,7 @@ public class CompraServiceImpl implements CompraService{
     private ProductoService productoService;
 
     @Autowired
-    private DolarService dolarService;
+    private DolarServiceImpl dolarServiceImpl;
     /*
     @Override
     public Compra guardarCompra(CompraDTO compraDTO) {
@@ -129,7 +125,7 @@ public class CompraServiceImpl implements CompraService{
 
     public Double convertirADolar(Double pesos){
         //dolarService.init();
-        return pesos/dolarService.getVenta();
+        return pesos/ dolarServiceImpl.getVenta();
     }
 
     public Double redondearDecimales(Double numero){

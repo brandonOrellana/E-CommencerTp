@@ -18,6 +18,7 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @CrossOrigin
     @PostMapping("/productos")
     public ProductoDTO guardarProducto(@RequestBody Producto producto){
         return productoService.guardarProducto(producto);

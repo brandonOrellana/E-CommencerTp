@@ -1,30 +1,8 @@
 package ar.com.ecommencer.service;
 
-import ar.com.ecommencer.dtos.DolarDTP;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+public interface DolarService {
+    void init();
+    Double getVenta();
+    String getFecha();
 
-@Service
-public class DolarService {
-    @Autowired
-    DolarDTP dolarDTP;
-
-    public DolarService() {
-        this.init();
-    }
-    public void init() {
-        String url = "https://api-dolar-argentina.herokuapp.com/api/dolarblue";
-        RestTemplate restTemplate = new RestTemplate();
-        this.dolarDTP = restTemplate.getForObject(url,DolarDTP.class);
-    }
-
-    public Double getVenta(){
-        return dolarDTP.getVenta();
-    }
-
-    public String getFecha(){
-        return dolarDTP.getFecha();
-    }
 }

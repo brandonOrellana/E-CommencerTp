@@ -16,6 +16,7 @@ public class VendedorController {
     @Autowired
     private VendedorService vendedorService;
 
+    @CrossOrigin
     @PostMapping("/vendedores")
     public Vendedor guardarVendedor(@RequestBody Vendedor vendedor){
         return vendedorService.guardarVendedor(vendedor);
